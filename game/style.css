@@ -11,12 +11,18 @@
 }
 #character
 {
-    width: 50px;
+    width: 20px;
     height: 50px;
     background-color: red;
     position: relative;
     top: 150px;
+    
 }
+.animate
+{
+    animation: jump 500ms infinite ;
+}
+
 #block
 {
     width: 20px;
@@ -31,7 +37,9 @@
 {
     0%{top:150px;}
     50%{top: 100px;}
-    100%
+    70%{top:100px;}
+    100%{top: 150px;}
+
 
 
 }
