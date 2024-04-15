@@ -1,0 +1,59 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #bfe3ff; /* Light blue background */
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 400px;
+    margin: 100px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    margin-bottom: 20px;
+    color: #333; /* Dark text color */
+}
+
+#problem {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333; /* Dark text color */
+}
+
+#input {
+    width: 80px;
+    padding: 8px;
+    font-size: 16px;
+}
+
+#timer {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: #555; /* Medium text color */
+}
+
+#score {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: #555; /* Medium text color */
+}
+
+#start {
+    padding: 10px 20px;
+    background-color: #4CAF50; /* Green button */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+#start:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
