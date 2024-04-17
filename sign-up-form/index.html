@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignUP form</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="index.js"></script>
+</head>
+
+<body>
+    <h1>Sign Up</h1>
+    <form action="">
+        <label for="Name">Name: <input type="text" id="Name" placeholder="Enter your name"></label>
+        <label for="Age">Age: <input type="text" id="Age" placeholder="Enter your age"></label>
+        <label for="Gender">Gender:
+            <input type="radio" id="Male" name="gender">
+            <label for="Male">Male</label>
+            <input type="radio" id="Female" name="gender">
+            <label for="Female">Female</label>
+        </label>
+        <label for="Email">Email: <input type="email" id="Email" placeholder="Enter your email"></label>
+        <label for="Education">Educational Qualification:
+            <select id="Education">
+                <option value="High School">High School</option>
+                <option value="Bachelor's Degree">Bachelor's Degree</option>
+                <option value="Master's Degree">Master's Degree</option>
+                <option value="PhD">PhD</option>
+            </select>
+        </label>
+        <label for="City">City: <input type="text" id="City" placeholder="Enter your city"></label>
+        <label for="Phone">Phone Number: <input type="tel" id="Phone" value="+91" placeholder="Enter your phone number"></label>
+        <label for="Password">Password: <input type="password" id="Password" placeholder="Enter your password"></label>
+        <label for="ConfirmPassword">Confirm Password: <input type="password" id="ConfirmPassword" placeholder="Confirm your password"></label>
+        <label for="Submit"><input type="submit" value="Submit"></label>
+    </form>
+    <script src="index.js"></script>
+</body>
+
+</html>
