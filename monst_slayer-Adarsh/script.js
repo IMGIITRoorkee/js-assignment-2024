@@ -12,26 +12,6 @@ document.onkeydown = function(e) {
     console.log("keycode", e.key);
 
     
-    // if(e.key === 'ArrowRight'){
-    //     goku = document.querySelector('.goku');
-    //     gkx=parseInt(window.getComputedStyle(goku,null).getPropertyValue('left'));
-    //     goku.style.left=gkx + 50 + "px";
-    //     console.log(parseInt(gkx));
-    //     fire=document.querySelector('.fire');
-    //     fire.style.left=goku.style.left;
-    //     console.log(parseInt(fire.style.left));
-    //     var animatingObject = document.querySelector('.fire');
-    //     var currentLeft = parseFloat(getComputedStyle(animatingObject).left);
-    //     animatingObject.style.left = (currentLeft+50) + 'px'; 
-
-    // }
-    // else if(e.key === 'ArrowLeft'){
-    //     goku = document.querySelector('.goku');
-    //     gkx=parseInt(window.getComputedStyle(goku,null).getPropertyValue('left'));
-    //     goku.style.left=(gkx - 50) + "px";
-    //     console.log(parseInt(gkx));
-
-    // }
     if(life>0){
      if (e.key === 'c'&&f===0 )
     {
