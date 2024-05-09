@@ -1,5 +1,6 @@
 const boardSize = 20;
 const cellSize = 20;
+let interval = 200;
 let snake = [{ x: 10, y: 10 }];
 let dx = 0; // snake will move 1 unit in one game loop
 let dy = 0;
@@ -94,4 +95,7 @@ const gameLoop = setInterval(function () {
     checkCollisions();
     drawSnake();
     drawFood();
-}, 200);
+    if (interval > 20) {
+        interval--;
+    }
+}, interval);
