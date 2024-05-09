@@ -51,9 +51,13 @@ function moveSnake() {
     const head = { x: snake[0].x + dx, y: snake[0].y + dy };
     snake.unshift(head);
     if (head.x === food.x && head.y === food.y) {
+        let foodCell = document.querySelector(`[data-x="${food.x}"][data-y="${food.y}"]`);
+        foodCell.classList.remove("food");
         generateFood();
     } else {
-        snake.pop();
+        segment = snake.pop();
+        let snakeCell = document.querySelector(`[data-x="${segment.x}"][data-y="${segment.y}"]`);
+        snakeCell.classList.remove("snake");
     }
 }
 
@@ -67,8 +71,27 @@ function generateFood() {
     food.y = Math.floor(Math.random() * boardSize);
 }
 
+function checkCollisions() {
+    const head = snake[0];
+    if (head.x < 0 || head.x >= boardSize || head.y < 0 || head.y >= boardSize) {
+        gameOver();
+    }
+    for (let i = 1; i < snake.length; i++) {
+        if (head.x === snake[i].x && head.y === snake[i].y) {
+            gameOver();
+        }
+    }
+}
+
+function gameOver() {
+    clearInterval(gameLoop);
+    alert("Game Over!");
+    location.reload();
+}
+
 const gameLoop = setInterval(function () {
     moveSnake();
+    checkCollisions();
     drawSnake();
     drawFood();
-}, 100);
+}, 200);
