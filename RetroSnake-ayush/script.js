@@ -86,7 +86,7 @@ function checkCollisions() {
 
 function gameOver() {
     clearInterval(gameLoop);
-    alert("Game Over!");
+    alert(`Game Over!\nScore: ${snake.length - 1}`);
     location.reload();
 }
 
