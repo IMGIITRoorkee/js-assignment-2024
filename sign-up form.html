@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign-Up Form</title>
+<style>
+    .error {
+        color: red;
+    }
+
+    .styleForm {
+        align-items: center;
+        padding-left: 10%;
+    }
+
+    .formElement {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .focused {
+        border-color: #007bff; 
+        border-width: 5px;
+    }
+</style>
+</head>
+<body>
+    <h1 style="color:palevioletred">Sign-Up Form</h1>
+    
+    <div class="styleForm">
+        <form id="signupForm" class="form">
+        
+            <div class="formElement">
+                <label for="qualification">Educational Qualification:</label>
+                <select id="qualification" name="qualification"  onfocus="this.classList.add('focused')" onblur="this.classList.remove('focused')">
+                    <option value="Matriculation">Matriculation (Class 10)</option>
+                    <option value="Intermediate">Intermediate (Class 12)</option>
+                    <option value="Undergraduate">Undergraduate</option>
+                    <option value="Postgraduate">Postgraduate</option>
+                </select>
+            </div>
+            <div class="formElement">
+                <label for="phone">Phone Number:</label>
+                <input type="text" id="phone" name="phone" oninput="validateField('phone', /^\+91\d{10}$/)"  onfocus="this.classList.add('focused')" onblur="this.classList.remove('focused')">
+                <div id="phoneError" class="error"></div>
+            </div>
+            <div class="formElement">
+                <label for="age">Age:</label>
+                <input type="text" id="age" name="age" oninput="validateField('age', /^\d+$/)"  onfocus="this.classList.add('focused')" onblur="this.classList.remove('focused')">
+                <div id="ageError" class="error"></div>
+            </div>
+            <div class="formElement">
+                <label for="gender">Gender:</label>
+                <input type="radio" id="male" name="gender" value="male">
+                <label for="male">Male</label>
+                <input type="radio" id="female" name="gender" value="female">
+                <label for="female">Female</label>
+            </div>
+            <div class="formElement">
+                <label for="text">Email:</label>
+                <input type="text" id="email" name="email" oninput="validateField('email', /^[^\s@]+@[^\s@]+\.[^\s@]+$/)"  onfocus="this.classList.add('focused')" onblur="this.classList.remove('focused')">
+                <div id="emailError" class="error"></div>
+            </div>
+            <div class="formElement">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password"  onfocus="this.classList.add('focused')" onblur="this.classList.remove('focused')">
+            </div>
+            <div class="formElement">
+                <label for="confirmPassword">Confirm Password:</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" oninput="equateField('confirmPassword','password')">
+                <div id="confirmPasswordError" class="error"></div>
+            </div>
+            <div class="formElement">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" oninput="validateField('name', /[A-Za-z]/)"  onfocus="this.classList.add('focused')" onblur="this.classList.remove('focused')">
+                <div id="nameError" class="error"></div>
+            </div>
+            <div class="formElement">
+                <label for="city">City:</label>
+                <input type="text" id="city" name="city" oninput="validateField('city', /[A-Za-z]/)"  onfocus="this.classList.add('focused')" onblur="this.classList.remove('focused')">
+                <div id="cityError" class="error"></div>
+            </div>
+            <div class="formElement">
+                <button type="submit" style="background-color:palevioletred; color: beige;">Submit</button>
+            </div>
+       
+        </form>
+    </div>
+
+    <script>
+        function validateField(fieldName, regex) {
+            var fieldValue = document.getElementById(fieldName).value;
+            var errorElement = document.getElementById(fieldName + "Error");
+            if (!regex.test(fieldValue)) {
+                errorElement.textContent = "Invalid " + fieldName.charAt(0).toUpperCase() + fieldName.slice(1);
+            } else {
+                errorElement.textContent = "";
+            }
+        }
+         
+        function equateField(password, confirmPassword){
+            var password = document.getElementById("password").value;
+            var confirmPassword = document.getElementById("confirmPassword").value;
+            if (password !== confirmPassword) {
+                confirmPasswordError.textContent = "Confirm Password not same as Password";
+            }else{
+                confirmPasswordError.textContent="";
+            }
+        }
+
+    
+    </script>
+
+</body>
+</html>

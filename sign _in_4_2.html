@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign-In Form</title>
+    <style>
+        .formElement{
+       padding-top: 30px;
+       padding-bottom: 30px;
+   }
+   .styleForm{
+       align-items: center;
+      padding-left:10%;
+   }
+   .error {
+        color: red;
+    }
+   </style>
+</head>
+<body>
+   
+   <div class="styleForm">
+       <h1 style="color: palevioletred;">Sign-In Form</h1>
+   <form id="signForm">
+    <div class="formElement"><label for="text">Email</label><br>
+        <input type="text" id="email" name="email" required oninput="validateField('email', /^[^\s@]+@[^\s@]+\.[^\s@]+$/)"><br>
+        <div id="emailError" class="error"></div>
+    </div>
+       <div class="formElement"><label for="password">Password</label><br>
+       <input type="password" id="password" name="password" required><br></div>
+       <div class="formElement"><button type="submit" id="submit" style="background-color: palevioletred; color: beige; ">Sign In</button></div>
+   </form>
+   </div>
+   <script>
+           function validateField(fieldName, regex) {
+            var fieldValue = document.getElementById(fieldName).value;
+            var errorElement = document.getElementById(fieldName + "Error");
+            if (!regex.test(fieldValue)) {
+                errorElement.textContent = "Invalid " + fieldName.charAt(0).toUpperCase() + fieldName.slice(1);
+            } else {
+                errorElement.textContent = "";
+            }
+        }  
+          document.getElementById("signForm").addEventListener("submit", async function(event) {
+            event.preventDefault();
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+             const data = {
+        email: email,
+        password: password
+    };
+    try {
+                const response = await fetch("https://reqres.in/api/login", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (!response.ok) {
+                    throw new Error("Failed to sign in");
+                }
+
+                
+                alert("Sign in successful!");
+            } catch (error) {
+                alert("Error: " + error.message);
+            }
+        });
+        document.getElementById("signForm").addEventListener("keypress", function(event) {
+ 
+ if (event.key === "Enter") {
+   event.preventDefault();
+   document.getElementById("submit").click();
+ }
+});
+    </script>
