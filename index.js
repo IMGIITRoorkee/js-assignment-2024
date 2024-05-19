@@ -1,47 +1,40 @@
+
 let boxsizex = 32;
 let boxsizey = 32;
 let dimensions = boxsizex * 16;
-let bulletPositionX ;
 let shipVelocityX = 32;
 let shipPositionX = 256;
 let alienVelocityY = 32;
-let bulletPositionY;
 let score = 0;
-let bullet;
-let bulletInterval;
 let bullets = [];
 let aliens = [];
 let scoreBoard;
 let alienInterval;
-let alien;
-let alienPositionX;
 let board;
-let alienPositionY;
 let GameOver;
-let alienGenerationInterval=4000;
+let alienGenerationInterval = 4000;
 let alienTimeOut;
 let PlayAgain;
 
 window.onload = function () {
   let ship = document.getElementById("ship");
-   board = document.getElementById("board");
- 
+  board = document.getElementById("board");
+
   ship.style.left = shipPositionX + "px";
   document.addEventListener("keydown", moveShip);
   scoreBoard = document.getElementById("scoreBoard");
- startAlienGeneration(alienGenerationInterval);
- 
+  startAlienGeneration(alienGenerationInterval);
 
   GameOver = document.createElement('div');
-  GameOver.style.height = dimensions  + "px";
+  GameOver.style.height = dimensions + "px";
   GameOver.style.width = dimensions + "px";
   GameOver.style.background = 'url(./img/GAMEOVER.png)';
   GameOver.style.backgroundSize = 'contain';
   GameOver.style.backgroundRepeat = 'no-repeat';
   GameOver.style.position = 'absolute';
-  GameOver.style.top = (dimensions / 4) + "px"; 
+  GameOver.style.top = (dimensions / 4) + "px";
   GameOver.style.left = "0px";
-  GameOver.style.display = 'none'; 
+  GameOver.style.display = 'none';
 
   PlayAgain = document.createElement('button');
   PlayAgain.textContent = "Play Again";
@@ -59,16 +52,14 @@ window.onload = function () {
 
   GameOver.appendChild(PlayAgain);
   board.appendChild(GameOver);
-
 };
 
-function startAlienGeneration(alienGenerationInterval){
+function startAlienGeneration(alienGenerationInterval) {
   clearInterval(alienTimeOut);
-  alienTimeOut= setInterval(createAlien, alienGenerationInterval);
+  alienTimeOut = setInterval(createAlien, alienGenerationInterval);
 }
 
 function moveShip(e) {
- 
   if (e.code === "ArrowLeft" && shipPositionX > 0) {
     shipPositionX -= shipVelocityX;
     ship.style.left = shipPositionX + "px";
@@ -78,51 +69,52 @@ function moveShip(e) {
   }
 
   if (e.code === "Space") {
-    bulletPositionY = 2 * boxsizey;
-    bulletPositionX = shipPositionX + 24;
-    
-    bullet = document.createElement("div");
+    let bulletPositionY = 2 * boxsizey;
+    let bulletPositionX = shipPositionX + 24;
+
+    let bullet = document.createElement("div");
     bullet.className = "bullet";
 
-    // Set bullet style
-    bullet.style.height = "16px"; // Add units
-    bullet.style.width = "16px"; // Add units
+    bullet.style.height = "16px";
+    bullet.style.width = "16px";
     bullet.style.backgroundColor = "white";
-    bullet.style.position = "absolute"; // Set position style for better placement
+    bullet.style.position = "absolute";
     bullet.style.left = bulletPositionX + "px";
     bullet.style.bottom = bulletPositionY + "px";
 
     board.appendChild(bullet);
-    bullets.push(bullet);
+    bullets.push({ element: bullet, positionY: bulletPositionY });
 
-    bulletInterval = setInterval(moveBullet, 300);
+    bullet.interval = setInterval(moveBullet, 300, bullet);
   }
 }
 
-async function moveBullet() {
-  bullets.forEach((bullet, index) => {
-    bulletPositionY += boxsizex;
-    bullet.style.bottom = bulletPositionY + "px";
+function moveBullet(bullet) {
+  bullets.forEach((bulletObj, index) => {
+    if (bulletObj.element === bullet) {
+      bulletObj.positionY += boxsizex;
+      bulletObj.element.style.bottom = bulletObj.positionY + "px";
 
-    if (bulletPositionY >= dimensions) {
-      bullet.remove();
-      bullets.splice(index, 1);
-      clearInterval(bulletInterval);
+      if (bulletObj.positionY >= dimensions) {
+        bulletObj.element.remove();
+        bullets.splice(index, 1);
+        clearInterval(bullet.interval);
+      }
     }
   });
 }
 
-async function createAlien() {
-   alienPositionY = 0;
+function createAlien() {
+  alienPositionY = 0;
 
   let randomIndex = Math.floor(Math.random() * 15);
-  alienPositionX = randomIndex*32;
+  alienPositionX = randomIndex * 32;
 
-  alien = document.createElement("div");
+  let alien = document.createElement("div");
   alien.className = "alien";
 
-  alien.style.height = "32px"; 
-  alien.style.width = "64px"; 
+  alien.style.height = "32px";
+  alien.style.width = "64px";
   alien.style.background = "url(./img/alien1.png)";
   alien.style.backgroundSize = "cover";
   alien.style.position = "absolute";
@@ -131,51 +123,63 @@ async function createAlien() {
 
   board.appendChild(alien);
 
-  aliens.push(alien);
+  aliens.push({ element: alien, positionY: alienPositionY });
 
-  alienInterval = setInterval(moveAlien, 300);
+  alien.interval = setInterval(moveAlien, 300, alien);
 }
-function moveAlien() {
-  aliens.forEach((alien, index) => {
-   
-    if (alienPositionY >= 448) {
-      gameOver();
-     
-   
-    }
-    alienPositionY += boxsizey;
-    alien.style.top = alienPositionY + "px";
 
-    if (bulletPositionY >= (512-alienPositionY) && bulletPositionX >= alienPositionX && bulletPositionX <= alienPositionX + 64) {
-     
-      score += 10;
-      scoreBoard.textContent = score;
-      alien.remove();
-      bullet.remove();
-      aliens.splice(index,1);
+function moveAlien(alien) {
+  aliens.forEach((alienObj, index) => {
+    if (alienObj.element === alien) {
+      alienObj.positionY += boxsizey;
+      alienObj.element.style.top = alienObj.positionY + "px";
 
-      clearInterval(alienInterval);
-      clearInterval(bulletInterval);
-     
-     DecAlienGenerationInterval();
-     
+      if (alienObj.positionY >= 448) {
+        gameOver();
+      }
+
+      bullets.forEach((bulletObj, bulletIndex) => {
+        let bulletX = parseInt(bulletObj.element.style.left);
+        let bulletY = parseInt(bulletObj.element.style.bottom);
+
+        if (bulletY >= (512 - alienObj.positionY) && bulletX >= parseInt(alienObj.element.style.left) && bulletX <= parseInt(alienObj.element.style.left) + 64) {
+          score += 10;
+          scoreBoard.textContent = score;
+          alienObj.element.remove();
+          bulletObj.element.remove();
+          aliens.splice(index, 1);
+          bullets.splice(bulletIndex, 1);
+
+          clearInterval(alienObj.interval);
+          clearInterval(bulletObj.interval);
+
+          checkAndAdjustAlienGenerationInterval();
+        }
+      });
     }
   });
 }
-function DecAlienGenerationInterval(){
-  if(score%50===0){
-    alienGenerationInterval-=300;
+
+function gameOver() {
+  aliens.forEach((alienObj) => {
+    alienObj.element.remove();
+    clearInterval(alienObj.interval);
+  });
+  bullets.forEach((bulletObj) => {
+    bulletObj.element.remove();
+    clearInterval(bulletObj.interval);
+  });
+
+  aliens = [];
+  bullets = [];
+  ship.remove();
+  GameOver.style.display = 'block';
+  clearInterval(alienTimeOut);
+}
+
+function checkAndAdjustAlienGenerationInterval() {
+  if (score % 50 === 0 && alienGenerationInterval > 100) {
+    alienGenerationInterval -= 200;
     startAlienGeneration(alienGenerationInterval);
   }
-}
-function gameOver(){
-  aliens.forEach((alien)=>alien.remove());
-  bullets.forEach((bullet) => bullet.remove());
-  aliens=[];
-  bullets=[];
-  GameOver.style.display='block';
-  ship.remove();
-
-  clearInterval(alienInterval);
-      clearInterval(alienTimeOut);
 }
