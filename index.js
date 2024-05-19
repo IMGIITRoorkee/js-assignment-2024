@@ -18,8 +18,9 @@ let alienPositionX;
 let board;
 let alienPositionY;
 let GameOver;
-let alienGenerationInterval=5000;
+let alienGenerationInterval=4000;
 let alienTimeOut;
+let PlayAgain;
 
 window.onload = function () {
   let ship = document.getElementById("ship");
@@ -30,14 +31,34 @@ window.onload = function () {
   scoreBoard = document.getElementById("scoreBoard");
  startAlienGeneration(alienGenerationInterval);
  
-  GameOver=document.createElement('div');
-  GameOver.style.height=dimensions+"px";
-  GameOver.style.width=dimensions+"px";
-  GameOver.style.background='url(./img/GAMEOVER.png)';
-  GameOver.style.backgroundSize='contain';
 
+  GameOver = document.createElement('div');
+  GameOver.style.height = dimensions  + "px";
+  GameOver.style.width = dimensions + "px";
+  GameOver.style.background = 'url(./img/GAMEOVER.png)';
+  GameOver.style.backgroundSize = 'contain';
+  GameOver.style.backgroundRepeat = 'no-repeat';
+  GameOver.style.position = 'absolute';
+  GameOver.style.top = (dimensions / 4) + "px"; 
+  GameOver.style.left = "0px";
+  GameOver.style.display = 'none'; 
 
+  PlayAgain = document.createElement('button');
+  PlayAgain.textContent = "Play Again";
+  PlayAgain.style.position = 'absolute';
+  PlayAgain.style.top = "60%";
+  PlayAgain.style.left = "50%";
+  PlayAgain.style.transform = "translate(-50%, -50%)";
+  PlayAgain.style.padding = "10px 20px";
+  PlayAgain.style.fontSize = "16px";
+  PlayAgain.style.cursor = "pointer";
 
+  PlayAgain.onclick = function () {
+    window.location.reload();
+  };
+
+  GameOver.appendChild(PlayAgain);
+  board.appendChild(GameOver);
 
 };
 
@@ -78,12 +99,12 @@ function moveShip(e) {
   }
 }
 
-function moveBullet() {
+async function moveBullet() {
   bullets.forEach((bullet, index) => {
     bulletPositionY += boxsizex;
     bullet.style.bottom = bulletPositionY + "px";
 
-    if (bulletPositionY >= dimensions - boxsizey) {
+    if (bulletPositionY >= dimensions) {
       bullet.remove();
       bullets.splice(index, 1);
       clearInterval(bulletInterval);
@@ -100,8 +121,8 @@ async function createAlien() {
   alien = document.createElement("div");
   alien.className = "alien";
 
-  alien.style.height = "32px"; // Removed extra space
-  alien.style.width = "64px"; // Removed extra space
+  alien.style.height = "32px"; 
+  alien.style.width = "64px"; 
   alien.style.background = "url(./img/alien1.png)";
   alien.style.backgroundSize = "cover";
   alien.style.position = "absolute";
@@ -118,15 +139,9 @@ function moveAlien() {
   aliens.forEach((alien, index) => {
    
     if (alienPositionY >= 448) {
-      alien.remove();
-      aliens.splice(index,1);
-      ship.remove();
-      bullet.remove();
-      board.appendChild(GameOver);
-      clearInterval(alienInterval);
-      clearInterval(alienTimeOut);
-      aliens.forEach((alien)=>alien.remove());
-      bullets.forEach((bullet) => bullet.remove());
+      gameOver();
+     
+   
     }
     alienPositionY += boxsizey;
     alien.style.top = alienPositionY + "px";
@@ -149,7 +164,18 @@ function moveAlien() {
 }
 function DecAlienGenerationInterval(){
   if(score%50===0){
-    alienGenerationInterval-=200;
+    alienGenerationInterval-=300;
     startAlienGeneration(alienGenerationInterval);
   }
+}
+function gameOver(){
+  aliens.forEach((alien)=>alien.remove());
+  bullets.forEach((bullet) => bullet.remove());
+  aliens=[];
+  bullets=[];
+  GameOver.style.display='block';
+  ship.remove();
+
+  clearInterval(alienInterval);
+      clearInterval(alienTimeOut);
 }
