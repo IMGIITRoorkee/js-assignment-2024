@@ -1,0 +1,17 @@
+#scorecard{
+
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     margin: auto;
+     margin-left: 550px;
+     width: 400px;
+     height: 200px;
+     background-color: #046231;
+     border: solid 10px #5b4d44;
+     border-radius: 10px;
+
+     color: #024020;
+     font-size: 64px;
+        
+}

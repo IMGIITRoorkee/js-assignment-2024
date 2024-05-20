@@ -1,3 +1,5 @@
+var shootScale = 20;
+
 function Stick(){
 
     this.position = new Vector2D(0,0);
@@ -26,21 +28,33 @@ Stick.prototype.reset = function(){
 
 Stick.prototype.updateStick = function(){
 
-    if( this.isShooting){
+
+    if( this.isShooting && BallsStopped && this.shootpower === 0){
+              
+        this.isShooting = false;
+        this.isVisible = true;
+        
+        
+    }
+    else if( this.isShooting && !BallsStopped){
+        this.isVisible = false;
+    }
+
+    else if( this.isShooting && BallsStopped){
   
-          if( this.curpowerLevel > 12)this.curpowerLevel-= 8 ;
+          if( this.curpowerLevel > 12)this.curpowerLevel-= 12 ;
           else {
+
                 
-                this.isShooting = false;
                 this.curpowerLevel = 12;
-                stick.isVisible = false;
-                balls.whiteball.velocity = new Vector2D( -Math.cos(this.rotation) * this.shootpower*10 , -Math.sin(this.rotation) * this.shootpower*10 );
+                this.isVisible = false;
+                balls.whiteball.velocity = new Vector2D( -Math.cos(this.rotation) * this.shootpower*shootScale , -Math.sin(this.rotation) * this.shootpower*shootScale);
                 this.shootpower = 0;
+                console.log(currentPlayer);
 
           }
 
     }
-    
     
     else
     {   

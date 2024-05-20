@@ -11,27 +11,15 @@ Vector2D.prototype.magnitude = function() {
 
 Vector2D.prototype.slow = function( acceleration ){
     
-    let newVel = new Vector2D(0,0);
-    
-    if (this.x < 1 && this.x > -1) {
-        newVel.x = 0;
-    } 
-    else if( this.x > 0){
-        newVel.x = this.x - acceleration*Delta;
-    }
-    else {
-        newVel.x = this.x + acceleration * Delta;
-    }
+    let magnitude = Math.sqrt(this.x * this.x + this.y * this.y);
+    let direction = Math.atan2(this.y, this.x);
 
-    if (this.y < 1 && this.y > -1) {
-        newVel.y = 0;
-    }
-    else if (this.y > 0) {
-        newVel.y = this.y - acceleration * Delta;
-    } 
-    else {
-        newVel.y = this.y + acceleration * Delta;
-    }
+    magnitude = Math.max(0, magnitude - acceleration * Delta);
+
+    let newVel = new Vector2D(
+        magnitude * Math.cos(direction),
+        magnitude * Math.sin(direction)
+    );
 
     return newVel;
 
@@ -70,11 +58,7 @@ Vector2D.prototype.normalize = function() {
 }
 
 Vector2D.prototype.dot = function(vector){
-    return this.x * vector.x + this.y * vector.y;
+    return (this.x * vector.x) + (this.y * vector.y);
 } 
 
-Vector2D.prototype.cross = function(vector){
- 
-      return this.x * vector.y - this.y * vector.x;
- 
-}
+

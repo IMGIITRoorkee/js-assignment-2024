@@ -1,12 +1,17 @@
 var balls = {};
-var boardBorderVertical1 = 75;
-var boardBorderVertical2 = 1460;
-var boardBorderHorizontal1 = 45;
-var boardBorderHorizontal2 = 755;
+var boardBorderVertical1 = 55;
+var boardBorderVertical2 = 1440;
+var boardBorderHorizontal1 = 55;
+var boardBorderHorizontal2 = 765;
 var elasticity = 0.95;
 var stick = new Stick();
 var mouse = new mouseHandler();
 var keyboard = new keyboardHandler();
+var pocketRadius = 46;
+var pockets = {};
+var redBallsIn = 0;
+var yellowBallsIn = 0;
+var currentPlayer = player1;
 
 var BallsStopped = true;
 
@@ -16,22 +21,50 @@ function init() {
 
     Canvas.clear();
 
-    balls.whiteball = new ball( {x:450,y:400} , "white");
-    balls.ball1 = new ball( {x:750,y:400} , "red");
-    balls.ball2 = new ball( {x:100 , y:200 } , "red");
-    balls.ball3 = new ball( {x:600 , y:400 } , "yellow");
+    balls.whiteball = new ball( {x:413,y:413} , "white");
+   
+    let ballPositionsAndColors = [
+        [new Vector2D(1022,413), "yellow"],
+        [new Vector2D(1056,393), "yellow"],
+        [new Vector2D(1056,433), "red"],
+        [new Vector2D(1090,374), "red"],
+        [new Vector2D(1090,413), "black"],
+        [new Vector2D(1090,452), "yellow"],
+        [new Vector2D(1126,354), "yellow"],
+        [new Vector2D(1126,393), "red"],
+        [new Vector2D(1126,433), "yellow"],
+        [new Vector2D(1126,472), "red"],
+        [new Vector2D(1162,335), "red"],
+        [new Vector2D(1162,374), "red"],
+        [new Vector2D(1162,413), "yellow"],
+        [new Vector2D(1162,452), "red"],
+        [new Vector2D(1162,491), "yellow"],
+    ];
+
+    for (let i = 0; i < ballPositionsAndColors.length; i++) {
+        let position = ballPositionsAndColors[i][0];
+        let color = ballPositionsAndColors[i][1];
+        balls[`ball${i}`] = new ball(position, color);
+    }
+    
+    pockets = {
+        pocket1: new Vector2D(750, 32),
+        pocket2: new Vector2D(750,794),
+        pocket3: new Vector2D(62,62),
+        pocket4: new Vector2D(1435,62),
+        pocket5: new Vector2D(62,762),
+        pocket6: new Vector2D(1435,762)
+    }
     
 }
 
 function update() {
+
     
     BallsStopped = true;
     updateAllBalls();
-    if(BallsStopped)
-        {
-            stick.updateStick();
-            stick.isVisible = true;
-        }
+    stick.updateStick();
+    updateScore();
 
 }
 
@@ -42,6 +75,11 @@ function render() {
     Canvas.drawImage(sprites.background , {x:0 , y:0});
     renderAllBalls();
     stick.renderStick();
+
+    // for( let cur_pocket in pockets){
+    //     Canvas.drawPoint(pockets[cur_pocket]);
+    //     Canvas.drawCircle(pockets[cur_pocket], pocketRadius);
+    // }
     
 }
 
@@ -51,11 +89,11 @@ function gameLoop() {
     render();
 
     //testing code
-    
-    // Canvas.drawRect( 1460 , 0 , 1 , 825);
-    // Canvas.drawRect( 75 , 0 , 2 , 825);
-    // Canvas.drawRect( 0, 45 , 1500 , 3);
-    // Canvas.drawRect( 0, 755 , 1500 , 5);
+
+    // Canvas.drawRect( boardBorderVertical1 , 0 , 1 , 825);
+    // Canvas.drawRect( boardBorderVertical2 , 0 , 1 , 825);
+    // Canvas.drawRect( 0, boardBorderHorizontal1 , 1500 , 1);
+    // Canvas.drawRect( 0, boardBorderHorizontal2 , 1500 , 1);
 
     requestAnimationFrame(gameLoop);
 }
@@ -68,16 +106,26 @@ function startGame() {
 function renderAllBalls(){
     for( let cur_ball in balls){
    
-        balls[cur_ball].renderball();
+      if( balls[cur_ball].inPocket === false )  balls[cur_ball].renderball();
+      else delete[balls[cur_ball]];
 
     }
 }
 
 function updateAllBalls(){
+     
+    handleCollisionWithBalls();
+
     for( let cur_ball in balls){
    
-         balls[cur_ball].updateball(balls);
-         if( balls[cur_ball].velocity.magnitude() !== 0)BallsStopped=false;
+        if( balls[cur_ball].inPocket === false){ 
+        
+            balls[cur_ball].updateball(balls);
+            if( balls[cur_ball].velocity.magnitude() !== 0)
+            {
+                BallsStopped=false;
+            }
+        }    
          
     }
 }

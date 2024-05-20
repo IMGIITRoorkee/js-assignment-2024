@@ -21,15 +21,14 @@ Canvas2D.prototype.drawImageStick = function( image, position, rotation , curpow
     this._canvascontext.save();
     this._canvascontext.translate(position.x  , position.y);
     this._canvascontext.rotate(rotation);
-
-
     this._canvascontext.drawImage(image, 18 + curpowerLevel , -11 );
     this._canvascontext.restore();
 
 }
 
 Canvas2D.prototype.drawPoint = function( position ){
-    this._canvascontext.fillRect( position.x , position.y ,1 , 1);
+    this._canvascontext.fillStyle = "white";
+    this._canvascontext.fillRect( position.x , position.y ,3 , 3);
 }
 
 Canvas2D.prototype.clear = function(){
@@ -39,6 +38,15 @@ Canvas2D.prototype.clear = function(){
 Canvas2D.prototype.drawRect = function(x,y,width,height){
     this._canvascontext.fillStyle = "white";
     this._canvascontext.fillRect( x , y , width , height );
+}
+
+Canvas2D.prototype.drawCircle = function( position , radius){
+  
+    this._canvascontext.beginPath();
+    this._canvascontext.arc(position.x, position.y, radius, 0, 2 * Math.PI, false);
+    this._canvascontext.strokeStyle = 'white';
+    this._canvascontext.stroke();
+     
 }
 
 var Canvas = new Canvas2D();
