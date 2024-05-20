@@ -11,9 +11,10 @@ var pocketRadius = 46;
 var pockets = {};
 var redBallsIn = 0;
 var yellowBallsIn = 0;
-var currentPlayer = player1;
+var scoreUpdated = false;
 
 var BallsStopped = true;
+
 
 
 
@@ -55,6 +56,21 @@ function init() {
         pocket5: new Vector2D(62,762),
         pocket6: new Vector2D(1435,762)
     }
+
+    cur_event = {
+     
+        no_event : 0,
+        red_ball_in : 1,
+        yellow_ball_in : 2,
+        black_ball_in : 3,
+        white_ball_in : 4,  
+        both_ball_in : 5
+      
+      }
+    
+    currentEvent = cur_event.no_event;
+    updateScore();
+      
     
 }
 
@@ -64,7 +80,10 @@ function update() {
     BallsStopped = true;
     updateAllBalls();
     stick.updateStick();
-    updateScore();
+    if( BallsStopped && !scoreUpdated){
+            updateScore();
+            scoreUpdated = true;
+    }   
 
 }
 
@@ -153,4 +172,10 @@ document.addEventListener('keyup', function(event) {
         if (event.key === 's'){
             keyboard.updateReleased('s');
         }
+});
+
+window.addEventListener('keydown', function(e) {
+    if(e.keyCode == 32 && e.target == document.body) {
+        e.preventDefault();
+    }
 });

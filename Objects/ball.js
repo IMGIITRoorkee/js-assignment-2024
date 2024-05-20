@@ -84,6 +84,7 @@ ball.prototype.handleBallInPocket = function(){
             {
                 this.center = new Vector2D( 413 , 413);
                 this.velocity = new Vector2D(0,0);
+                currentEvent = cur_event.white_ball_in;
             }
 
 
@@ -92,12 +93,24 @@ ball.prototype.handleBallInPocket = function(){
 
             if( this.color == "red"){
                  redBallsIn++;
+                 if( currentEvent === cur_event.yellow_ball_in){
+                    currentEvent = cur_event.both_ball_in;
+                 }
+                 else{
+                    currentEvent = cur_event.red_ball_in;
+                 }
             }
             else if( this.color == "yellow"){
                  yellowBallsIn++;
+                    if( currentEvent === cur_event.red_ball_in){
+                        currentEvent = cur_event.both_ball_in;
+                    }
+                    else{
+                        currentEvent = cur_event.yellow_ball_in;
+                    }
             }
             else if( this.color == "black"){
-                 //game over
+                    currentEvent = cur_event.black_ball_in;
             }
          
         }
@@ -121,7 +134,7 @@ function handleCollisionWithBalls(){
             let ball1 = ballsArray[i];
             let ball2 = ballsArray[j];
 
-            if(ball1.center.distance(ball2.center) < ball1.radius + ball2.radius + 2){
+            if(ball1.center.distance(ball2.center) < ball1.radius + ball2.radius){
                 handleCollisionWithBall(ball1,ball2);
             }
         }
@@ -138,8 +151,8 @@ function handleCollisionWithBall(ball1,ball2){
 
      var minimumTranslation = unitNormal.multiply(overlap);
 
-     ball1.center = ball1.center.add(minimumTranslation.multiply(0.5));
-     ball2.center = ball2.center.subtract(minimumTranslation.multiply(0.5));
+     ball1.center = ball1.center.add(minimumTranslation.multiply(1));
+     ball2.center = ball2.center.subtract(minimumTranslation.multiply(1));
      
      // for ball1
      var v1n = ball1.velocity.dot(unitNormal);

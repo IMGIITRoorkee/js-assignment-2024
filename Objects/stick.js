@@ -50,7 +50,8 @@ Stick.prototype.updateStick = function(){
                 this.isVisible = false;
                 balls.whiteball.velocity = new Vector2D( -Math.cos(this.rotation) * this.shootpower*shootScale , -Math.sin(this.rotation) * this.shootpower*shootScale);
                 this.shootpower = 0;
-                console.log(currentPlayer);
+                scoreUpdated = false;
+                currentEvent = cur_event.no_event;
 
           }
 
