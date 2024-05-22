@@ -4,6 +4,7 @@
 }
 body{
     background-color: brown;
+    overflow: hidden;
     
 }
 .Main{
@@ -35,6 +36,35 @@ body{
     bottom: 0;
     left: 800px;
 }
+
+.animateniichin{
+    animation: niichin 2s linear;
+}
+.obstaclena{
+    animation: obstaclena 5s infinite;
+}
+ @keyframes niichin{
+    0%{
+        bottom: 0px;
+
+    }
+    50%{
+        bottom: 500px;
+    }
+    100%{
+        bottom: 0px;
+    }
+ }
+ @keyframes obstaclena{
+    0%{
+      
+        left: 100vw ;
+    }
+    
+    100%{
+        left: -10vw;
+    }
+ }
     
 
 

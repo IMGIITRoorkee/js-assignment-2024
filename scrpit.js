@@ -1,10 +1,10 @@
 document.onkeydown = function(e){
-    console.log("On key down", e.keydown)
-    if(e.keydown==38){
+    console.log("On key down", e.keyCode)
+    if(e.keyCode==38){
         niichin = document.querySelector('.niichin');
-        niichin.classList.add('animate.niichin');
+        niichin.classList.add('animateniichin');
         setTimeout(() => {
-            niichin.classList.remove('animate.niichin');
+            niichin.classList.remove('animateniichin');
             
         }, 700);
     }
