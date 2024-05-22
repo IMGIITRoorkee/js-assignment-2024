@@ -16,6 +16,9 @@ body{
     
 
 }
+.gameover{
+    visibility: hidden;
+}
 .niichin{
     background-image: url(handsome_boi-removebg-preview.png);
     background-repeat: no-repeat;
