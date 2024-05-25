@@ -1,0 +1,87 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #f0f0f0;
+  overflow: hidden; /* Prevent horizontal scrolling */
+}
+
+#game-container {
+  position:absolute;
+  bottom : -50%;
+  width: 420px; /* Set width to viewport width */
+  border-radius: 50px;
+  height: 100000000000000px;
+  border: 1px solid #888;
+  background-color: #474646;
+  overflow: hidden;
+  margin-left:35%;
+}
+  
+#overall {
+  width: 100%;
+  overflow: hidden;
+}
+
+.lane {
+  position: absolute;
+  width: 80px;
+  height: 10000000000px;
+  margin-left: 30px;
+  margin-right: 30px;
+  display: flex;
+  flex-direction:column;
+  align-items: center;
+}
+
+#lane1 {
+  background-color: rgb(185, 89, 89);
+  left: 0;
+  justify-content: center;
+}
+
+#lane2 {
+  background-color: rgb(72, 72, 161);
+  left: calc(100% / 3);
+  justify-content: flex-end;
+}
+
+#lane3 {
+  background-color: rgb(70, 128, 70);
+  left: calc(2 * 100% / 3);
+  justify-content: flex-start;
+}
+
+#electron {
+  position:fixed;
+  top:50vh;
+  right:48%;
+  width: 50px;
+  height: 50px;
+  background-color: palevioletred;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+  margin-left:35%;
+}
+
+.hole {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background-color: rgb(241, 241, 53);
+  z-index: 10;
+  border-radius: 100%;
+ 
+}
+
+#startButton{
+  z-index: 50;
+  color: white;
+  position: fixed;
+  top: 50vh;
+  left: 48vw;
+  background-color: aqua;
+}
+
