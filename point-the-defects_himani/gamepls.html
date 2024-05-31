@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="fullpls.css">
+    <title>Document</title>
+</head>
+<body>
+    <h1><center>POINT THE DEFECTS</center></h1>
+    <div class="mainbody">
+        <div class="info">
+            <center><p class="l_info">Level Info</p></center>
+            <p class="l_num">Level 1 : Vacancy Defect</p>
+            <p class="l_what">Vacancy Defect : Blah Blah</p>
+            <p class="l_how">To Solve this level : Create a Si Lattice and then remove an atom from it</p>
+        </div>
+        <div class="main">
+            <div class="d1">
+            <button class="lar"> </button>
+            <button class="lar"> </button>
+            <button class="lar"> </button>
+            <button class="lar"> </button>
+            </div>
+            <div class="d2">
+                <button class="smal"> </button>
+                <button class="smal"> </button>
+                <button class="smal"> </button>
+            </div>
+            <div class="d1">
+                <button class="lar"> </button>
+                <button class="lar"> </button>
+                <button class="lar"> </button>
+                <button class="lar"> </button>
+            </div>
+            <div class="d2">
+                <button class="smal"> </button>
+                <button class="smal"> </button>
+                <button class="smal"> </button>
+            </div>
+            <div class="d1">
+                <button class="lar"> </button>
+                <button class="lar"> </button>
+                <button class="lar"> </button>
+                <button class="lar"> </button>
+            </div>
+            <div class="d2">
+                <button class="smal"> </button>
+                <button class="smal"> </button>
+                <button class="smal"> </button>
+            </div>
+            <div class="d1">
+                <button class="lar"> </button>
+                <button class="lar"> </button>
+                <button class="lar"> </button>
+                <button class="lar"> </button>
+            </div>
+            </div>
+        <div class="display">
+            <div class="level">
+                Levels :
+                <div class="l">LEVEL1</div>
+                <div class="l">LEVEL2</div>
+                <div class="l">LEVEL3</div>
+            </div>
+            <div class="controls">
+                <p>How to PLAY?</p>
+                Mouse Left-click : Add Si atom<br>
+                Mouse Right-click : Add Substitional atom<br>
+                Mouse Double-click : Remove atom<br>
+                Choose atom to add from the dropdowns below<br>
+
+
+            </div>
+            <div class="resultcontainer">
+                Result : 
+                <p class="result">the result will appear here</p>
+            </div> 
+        </div>
+    </div>
+    <center>
+    <div class="elements">
+        <div>
+        Interstitial Element : 
+        <select name="interstitial" id="interstitial">
+            <option value="p">Proton</option>
+            <option value="C">Carbon</option>
+        </select>
+        </div>
+        <div>
+        Substitutional Element : 
+        <select name="sub" id="sub">
+            <option value="P">Phosphorous</option>
+            <option value="Al">Aluminium</option>
+        </select>
+        </div>
+        <div>
+            <button class="fill">FILL</button>
+            <button onclick="reset_lattice()">RESET</button>
+        </div>
+        <center><button onclick="submit()">SUBMIT</button></center>
+    </div>
+    </center>
+
+    <script src="apppls.js"></script>
+</body>
+</html>
