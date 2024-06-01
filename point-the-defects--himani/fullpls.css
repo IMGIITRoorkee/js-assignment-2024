@@ -1,0 +1,187 @@
+body{
+  background-color:aliceblue;
+}
+.mainbody{
+    background-color: rgb(211, 235, 255);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.info{
+    width: 32%;
+    height: 336px;
+    margin-left: 20px;
+    background-color: #b0d4fb;
+    /* background-color: aquamarine; */
+}
+.display{
+    /* background-color: aquamarine; */
+    width: 33%;
+    height: 336px;
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.main{
+    /* background-color: black;  */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 320px;
+    height:336px;
+}
+.elements{
+    /* background-color: aqua; */
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    height: 100px;
+    justify-content: space-evenly;
+}
+.lar{
+    font-size: 15px;
+    /* padding: 20px 24px; */
+    width:60px;
+    height: 60px;
+    z-index: 4;
+    border-radius: 20%;
+    border-width: 1px;
+}
+.d1{
+    /* background-color: aquamarine; */
+    width: 305px;
+    height:60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.d2{
+    /* background-color: aqua; */
+    width: 265px;
+    height:14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.smal{
+    font-size: 15px;
+    width: 25px;
+    height: 25px;
+    /* padding:5px 10px; */
+    z-index: 3;
+    border-radius: 100%;
+    border-width: 1px;
+}
+.l{
+    padding: 5px;
+    margin-left: 20px;
+}
+ 
+.level{
+  height:9%;
+  width:97%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  border-radius:2%;
+  margin-bottom:20px;
+}
+
+.resultcontainer{
+  background-color: #b0d4fb;
+  height:20%;
+  width:70%;
+  margin-top:50px;
+  border-radius:2%
+}
+
+/* Hover effect */
+button.lar:hover, button.smal:hover {
+    background-color: #f0f0f0; /* Change background color on hover */
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3); /* Add a subtle shadow */
+    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Smooth transition */
+  }
+  
+  /* Button click animation */
+  button.lar:active, button.smal:active {
+    transform: scale(0.95); /* Scale down slightly when clicked */
+    transition: transform 0.2s ease-in-out; /* Smooth transition */
+  }
+/* Hover effect */
+button.fill:hover {
+    background-color: #0056b3; /* Change background color on hover */
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3); /* Add a subtle shadow */
+    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Smooth transition */
+  }
+  
+  /* Button click animation */
+  button.fill:active {
+    transform: scale(0.95); /* Scale down slightly when clicked */
+    transition: transform 0.2s ease-in-out; /* Smooth transition */
+  }
+/* Hover effect */
+.l:hover {
+    background-color: #f0f8ff; /* Change background color on hover */
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3); /* Add a subtle shadow */
+    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Smooth transition */
+  }
+/* Result display animation */
+
+/* Hover effect for buttons */
+.elements button:hover {
+    background-color: #007bff; /* Change background color on hover */
+    color: #fff; /* Change text color */
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out; /* Smooth transition */
+  }
+  
+  /* Hover effect for dropdown options */
+  .elements select:hover {
+    background-color: #f0f0f0; /* Change background color on hover */
+    transition: background-color 0.3s ease-in-out; /* Smooth transition */
+  }
+  
+  /* Button click animation */
+  .elements button:active {
+    transform: scale(0.95); /* Scale down slightly when clicked */
+    transition: transform 0.2s ease-in-out; /* Smooth transition */
+  }
+  
+  /* Dropdown selection animation */
+  .elements select:focus {
+    transform: scale(1.05); /* Scale up slightly when selected */
+    transition: transform 0.2s ease-in-out; /* Smooth transition */
+  }
+/* Background animation */
+body {
+    background-image: url('background-animation.gif'); /* Replace 'background-animation.gif' with your animation file */
+    background-size: cover;
+    animation: fadeIn 1s ease-in-out forwards; /* Fade in animation */
+  }
+  
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  /* Element transition animation */
+  /* Example: Show/hide elements with fade-in/fade-out animation */
+  .element {
+    opacity: 0; /* Initially hidden */
+    animation: fadeInElement 0.5s ease-in-out forwards; /* Fade in animation */
+  }
+  
+  @keyframes fadeInElement {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+            
