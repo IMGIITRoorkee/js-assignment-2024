@@ -4,8 +4,8 @@ document.addEventListener('DOMContentLoaded', function() {
   const gameContainer = document.getElementById('game-container');
 
   function startGame() {
-    startButton.style.display = 'none'; // Hide the start button
-    gameContainer.style.display = 'block'; // Show the game container
+    startButton.style.display = 'none'; 
+    gameContainer.style.display = 'block';
 
   const holeSpeed = 5;
   let laneIndex = 1;
@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
       holePosition += holeSpeed;
       hole.style.bottom = holePosition + 'px';
 
-      // Remove holes when they go beyond the game container
+      
       if (holePosition > gameContainer.clientHeight) {
         hole.remove();
       }
@@ -73,23 +73,23 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   function moveElectron() {
-    const lane = lanes[laneIndex]; // Get the current lane where the electron should move
-    const laneWidth = lane.offsetWidth; // Get the width of the current lane
-    const maxRight = gameWidth - electronWidth; // Calculate the maximum right position
-    const maxLeft = Math.max(0, lane.offsetLeft); // Calculate the maximum left position, ensuring it stays to the right of the leftmost boundary
-    const targetLeft = Math.min(Math.max(maxLeft, lane.offsetLeft + laneWidth / 2 - electronWidth / 2), maxRight); // Calculate the target left position, ensuring it stays within the bounds
+    const lane = lanes[laneIndex];
+    const laneWidth = lane.offsetWidth; 
+    const maxRight = gameWidth - electronWidth;
+    const maxLeft = Math.max(0, lane.offsetLeft);
+    const targetLeft = Math.min(Math.max(maxLeft, lane.offsetLeft + laneWidth / 2 - electronWidth / 2), maxRight);
 
-    // Set the left position of the electron to the calculated target left position
+  
     electron.style.left = targetLeft + 'px';
   }
 
   function generateHoles() {
     lanes.forEach(function(lane) {
-      if (Math.random() < 0.004){ // Adjust the probability to control the frequency of holes
+      if (Math.random() < 0.004){ 
         const hole = document.createElement('div');
         hole.className = 'hole';
         const randomLeft = Math.floor(Math.random() * (lane.offsetWidth - 20));
-        hole.style.bottom = '0'; // Set bottom to 0 to ensure holes appear at the top
+        hole.style.bottom = '0'; 
         hole.style.left = randomLeft + 'px';
         lane.appendChild(hole);
       }
