@@ -2,13 +2,13 @@ body {
   margin: 0;
   padding: 0;
   background-color: #f0f0f0;
-  overflow: hidden; /* Prevent horizontal scrolling */
+  overflow: hidden; 
 }
 
 #game-container {
   position:absolute;
   bottom : -50%;
-  width: 420px; /* Set width to viewport width */
+  width: 420px; 
   border-radius: 50px;
   height: 100000000000000px;
   border: 1px solid #888;
