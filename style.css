@@ -1,0 +1,66 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; 
+    background: rgb(191, 189, 189);
+}
+    
+.creepster-regular {
+    font-family: "Creepster", system-ui;
+    font-weight: 400;
+    font-style: normal;
+}
+
+h1{
+    font-family: 'Creepster';
+    margin: 30px;
+    font-size: 52px;
+    text-align: center;
+    letter-spacing: 10px;
+}
+
+#canvas1{
+    position: absolute;
+    border: 5px solid black;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    max-width: 100%;
+    max-height: 100%;
+}
+
+#player, #layer1, #layer2, #layer3, #layer4, #layer5,#layer1-f, #layer2-f, #layer3-f, #layer4-f, #layer5-f,#enemy_fly,#enemy_plant,#enemy_spider_big, #fire, #collisionAnimation, #lives{
+    display: none;
+}
+
+.button {
+    position: absolute;
+    top: 85%;
+    background-color: #2d2d2d;
+    border: none;
+    color: white;
+    padding: 20px 40px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 24px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px;
+}
+.button:hover {
+    background-color: #000000;
+}
+
+.button:active {
+    background-color: #000000;
+    box-shadow: 0 5px #666; 
+    transform: translateY(4px);
+}
+
+#buttonT{
+    left: 55%;
+}
+#buttonE{
+    left: 30%;
+}
