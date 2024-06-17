@@ -24,7 +24,6 @@ function checkColor() {
 
     if (userColor === computerColor) {
         document.getElementById('result').textContent = 'Congratulations! You matched the color!';
-        /*added code*/
     } else {
         document.getElementById('result').textContent = 'Try again! Colors do not match.';
     }
