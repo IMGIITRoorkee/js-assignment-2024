@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Match RGB</title>
+<link rel="stylesheet" href="style2.css">
+</head>
+<body>
+    <h1>Match RGB</h1>
+    <div class="container">
+        <div class="color-box" id="computer-color">
+            <p class="label">Match this color</p>
+        </div>
+        <div class="color-box" id="user-color">
+            <p class="label">Your color</p>
+        </div>
+        <div class="inputs">
+            <label for="red" style="color: red;" class="label">Red:</label>
+            <select id="red">
+                <option value="0">0</option>
+                <option value="51">51</option>
+                <option value="102">102</option>
+                <option value="153">153</option>
+                <option value="204">204</option>
+                <option value="255">255</option>
+            </select>
+            <label for="green" style="color: green;" class="label">Green:</label>
+            <select id="green">
+                <option value="0">0</option>
+                <option value="51">51</option>
+                <option value="102">102</option>
+                <option value="153">153</option>
+                <option value="204">204</option>
+                <option value="255">255</option>
+            </select>
+            <label for="blue" style="color: blue" class="label">Blue:</label>
+            <select id="blue">
+                <option value="0">0</option>
+                <option value="51">51</option>
+                <option value="102">102</option>
+                <option value="153">153</option>
+                <option value="204">204</option>
+                <option value="255">255</option>
+            </select>
+            <button onclick="checkColor()" id="button">Check</button>
+        </div>
+        <!--<button onclick="checkColor()" id="button">Check</button>-->
+        <p id="result"></p>
+    </div>
+    <script src="script2.js"></script>
+</body>
+</html>
